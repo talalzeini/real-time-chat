@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> {{title}}</title>
+    <!-- FONT AWESOME LINKS -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css"/>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="chat">
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!-- FIRST SECTION -->
+        <!-- FIRST SECTION -->
+        <!-- FIRST SECTION -->
+        <!-- FIRST SECTION -->
+        <section class="first-section" id='first-section'>
+        <h1 id='header' style='color:white;'>Chat App</h1> 
+          <div id="login-section">
+            <input
+              type="text"
+              class="username"
+              placeholder="Username"
+              id="username"
+            />
+            <button
+              type="submit"
+              onclick="ifUsernameEmpty()"
+                          class="button"
+              id="change-username"
+            >
+              Login
+            </button>
+          </div>
+
+          <p class="errorText" id="errorText"></p>
+        </section>
+        <!-- FIRST SECTION -->
+        <!-- FIRST SECTION -->
+        <!-- FIRST SECTION -->
+        <!-- FIRST SECTION -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!-- SECOND SECTION -->
+        <!-- SECOND SECTION -->
+        <!-- SECOND SECTION -->
+        <!-- SECOND SECTION -->
+
+        <div class="chat-box hide" id="chat-box">
+          <div id="feedback" class="feedback">{{{messages}}}</div>
+        </div>
+        <div class="chat-footer hide" id="chat-footer">
+          <!-- <textarea placeholder="Type a message"></textarea> -->
+          <div style='display:block; margin:0 auto; text-align:  center;'>
+              <input
+                type="text"
+                id="message"
+                placeholder="Type message here..."
+              ></input>
+              <button type="submit" id="change-message" class="send-button">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+              </button>
+          </div>
+        </div>
+
+        <!-- SECOND SECTION -->
+        <!-- SECOND SECTION -->
+        <!-- SECOND SECTION -->
+        <!-- SECOND SECTION -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+      </div>
+    </div>
+     <script>
+  
+  var nb = parseInt('{{numberOfMessages}}')
+
+
+for ( var j = 0; j < nb; j++ ){
+  if(j % 2 == 0){
+     document.getElementById("sp" + j).classList.remove("sp");
+  }else if(j % 2 != 0){
+      document.getElementById("sp" + j).classList.add("sp");
+  }
+}
+function ifUsernameEmpty(){
+  document.getElementById('first-section').classList.add('hide')
+  document.getElementById('chat-box').classList.remove('hide')
+  document.getElementById('chat-footer').classList.remove('hide')
+}
+        </script>
+  </body>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: "Avenir";
+      box-sizing: border-box;
+    }
+    body {
+      background: black;
+    }
+    h1 {
+      color: white;
+      font-size: 40px;
+      text-align: center;
+      margin: 40px;
+    }
+
+    .first-section {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .username,
+    .button {
+      width: 50%;
+      margin: 10px auto;
+      font-size: 16px;
+      padding: 10px;
+      outline: none;
+      border-radius: 5px;
+      border: 2px solid white;
+      background: white;
+      display: block;
+      transition: 0.25s;
+    }
+    .send-button {
+      width: 10%;
+      height:40px;
+      font-size: 17px;
+      outline: none;
+      border-radius: 5px;
+      border:none;
+      transition: 0.25s;
+      background: white;
+      display:inline-block;
+      transition: 0.25s;
+    }
+    .message {
+      color: white;
+    }
+    .username::placeholder {
+      color: gray;
+    }
+    .button:hover, .send-button:hover {
+      cursor: pointer;
+      transition: 0.25s;
+      background: #eeeeee;
+    }
+    .errorText {
+      color: red;
+      text-align: center;
+    }
+    .hide {
+      display: none;
+    }
+    .flex {
+      display: flex;
+    }
+    .container {
+      width:500px;
+      height: 100vh;
+      margin: auto;
+    }
+ 
+    .chat {
+      border: 2px solid white;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .chat-header {
+      display: flex;
+      cursor: pointer;
+    }
+    .chat-box {
+      background-attachment: fixed;
+      padding-left: 20px;
+      padding-right: 20px;
+      overflow-y: scroll;
+      flex: 1;
+    }
+
+
+    .chat-r {
+      display: flex;
+    }
+    .chat-r .sp {
+      flex: 1;
+    }
+
+    .chat-l {
+      display: flex;
+    }
+    .chat-l .sp {
+      flex: 1;
+    }
+
+    .chat-box .mess {
+      max-width: 300px;
+      background: #f7fcf6;
+      padding: 10px;
+    
+      border-radius: 10px;
+      margin:10px 0px;
+      cursor: pointer;
+    }
+    .chat-box .mess p {
+      word-break: break-all;
+      font-size: 16px;
+    }
+    .chat-box .mess-r {
+      background: #e2ffc7;
+    }
+    .chat-box .check {
+      float: right;
+    }
+     .chat-box .time {
+      float: left;
+    }
+     .chat-box .time span {
+       color: #888;
+      font-size: 12px;
+      font-weight: 700px;
+    }
+    /* time  */
+    .chat-box .check span {
+      color: #888;
+      font-size: 12px;
+      font-weight: 700px;
+    }
+    ::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+    *::-webkit-scrollbar-track,*::-webkit-scrollbar-thumb,    *::-webkit-scrollbar-thumb:hover  {
+      background: transparent;
+    }
+
+
+    .chat-footer {
+      justify-content: center;
+      align-items: center;
+      border:none;
+      border-top:2px solid white;
+      position: relative;
+      bottom:0;
+      cursor: pointer;
+    }
+    .chat-footer input {
+      display:inline-block;
+      flex: 1;
+      border:none;
+      width: 85%;
+      text-align: left;
+      margin:10px auto;
+      height: 40px;
+      border-radius: 5px;
+      text-indent: 10px;
+      outline: none;
+      font-size: 17px;
+      border: none;
+      color: #555;
+      resize: none;
+    }
+
+       @media (max-width:900px){
+      .container{
+        width:100vw;
+      }
+   .chat{
+         border: none;
+    }
+    .chat-footer {
+      border:2px solid white;
+    }
+    }
+  </style>
+  <!-- JQUERY SCRIPT -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+ 
+  </script>
+
+  <script src="chat.js"></script>
+  
+</html>
+
+<!-- 
+
+
+
+
+
+    
